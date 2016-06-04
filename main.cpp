@@ -14,13 +14,19 @@ int fact(int n) {
 //fapr vine de factorial approximation
 //cfac vine de la current factorial
 //pfac vine de la past factorial
+
+int nr;
+
 int fapr(int n) {
-    int cfac=0;
+    int cfac=1;
     int pfac;
-    for (int i=0; i<=n; i++) {
+    nr = 0;
+    for (int i=1; i<=n; i++) {
+        nr++;
         pfac=cfac;
         cfac=fact(i);
-        if (pfac<=n && n<cfac) {
+        if ((pfac<=n) && (n<cfac)) {
+            nr--;
             return pfac;
         }
     }
@@ -29,15 +35,16 @@ int fapr(int n) {
 int main()
 {
     int n;
-    //efaux vine de la variabila auxiliara pt. eficienta
-    int efaux;
     cin>>n;
-    /*
-    while (n) {
-        efaux=
-        n-=fapr(n);
-        cout<<fapr(n)<<" ";
-    }
-*/
-    cout<<fapr();
+	cout << endl;
+	cout << n << " = ";
+	int aux = n, aux2 = n;
+    while(n>0){
+		n = n - fapr(n);
+		if (aux == aux2) cout << nr << "!";
+		else cout << " + " << nr << "!";
+		aux2 = n;
+		//n = n - fapr(n);
+	}
+	cout << endl;
 }
